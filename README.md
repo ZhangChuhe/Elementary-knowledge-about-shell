@@ -1,12 +1,12 @@
 shell脚本可以实现自动化批量作业，减少人为参与，其底层是用C实现的，shell脚本是人与系统交互的语言，一般用来处理各种文件，处理管道等工作
 ### 输出
-```
+```shell
 #! /bin/bash
 echo "Hello World"
 ```
 
 ### 变量
-```
+```shell
 #! /bin/bash
 name=hello
 echo $name #等价于echo ${name}
@@ -22,7 +22,7 @@ echo ${name:0:3} #输出下标志0开始的三个字符
 ```'command'```和```$(command)```是一样的结果
 
 ### 数组
-```
+```shell
 #! /bin/bash
 array=(1 2 3 4)
 echo ${array[0]}
@@ -35,7 +35,7 @@ echo ${array[*]} #输出数组长度,如果是${#array}的话输出1
 表达式用空格隔开，expr命令执行stdout结果，在`exit code`中也反馈结果
 
 **1.字符串表达式**
-```
+```shell
 #! /bin/bash
 str="Hello World"
 echo $(expr length "$str")
@@ -44,7 +44,7 @@ echo $(expr index "$str" aWd) #查询aWd中任意一个字符在字符串中出�
 echo 'expr substr "$str" 1 2' #这里是指下标为1的情况下，输出从下表1开始长度为2的子串
 ```
 **2.整数表达式**
-```
+```shell
 #! /bin/bash
 a=3
 b=4
@@ -59,7 +59,7 @@ echo `expr \( $a + 1 \) \* \( $b + 1 \)`  # 输出20，值为(a + 1) * (b + 1)�
 
 ### read
 相当于cin
-```
+```shell
 #! /bin/bash
 read name
 echo ${name}
@@ -69,7 +69,7 @@ read -t 5 name #5s时限输入，否则自动跳过
 #注意这个name要放在最后，如果先name然后再-t 5是不符合语法的
 ```
 ### echo
-```
+```shell
 echo -e Hello World '\c' #不换行输出
 echo Bochi
 
@@ -78,7 +78,7 @@ echo "Hello" > output.md #将输出结果重定向到文件里
 
 ### printf
 几乎和C/C++的一模一样
-```
+```shell
 printf "%10d.\n" 123  # 占10位，右对齐
 printf "%-10.2f.\n" 123.123321  # 占10位，保留2位小数，左对齐
 printf "My name is %s\n" "yxc"  # 格式化输出字符串
@@ -94,7 +94,7 @@ test是用exit code返回，所以用0来表示真
 
 ### 判断语句和case语句
 if-else语句
-```
+```shell
 if condition
 then
     语句1
@@ -102,7 +102,7 @@ then
     ...
 fi
 ```
-```
+```shell
 if condition
 then
     语句1
@@ -116,7 +116,7 @@ fi
 ```
 
 case语句
-```
+```shell
 case $变量名称 in
     值1)
         语句1
@@ -145,7 +145,7 @@ esac
 
 ### 循环语句
 **for**
-```
+```shell
 #! /bin/bash
 for i in 1 2 3 4
 do
@@ -156,7 +156,7 @@ done
 输出n in [x,y]
 `{x..y}`代表一个序列，由[min,max]的这样一个序列
 
-```
+```shell
 for i {1..20} #这里如果是{0..9}就会输出0到9
 
 for i in $(seq 1 10)
@@ -166,7 +166,7 @@ for ((i = 0;i < n;i ++))
 for i in $(ls)
 ```
 **while**
-```
+```shell
 while condition
 do
     语句1
@@ -176,7 +176,7 @@ done
 ```
 until...do...done
 until获得想要的答案才结束循环，yxc说这类似npy直到你认错才原谅你，而现实中的npy可比此复杂多了
-```
+```shell
 #! /bin/bash
 until [ "$name" == "Jack" ]
 do
@@ -187,7 +187,7 @@ continue和C/C++的一样
 
 ### 函数
 shell的return是0~255之间的数字
-```
+```shell
 [function] func_name() {  # function关键字可以省略
     语句1
     语句2
@@ -195,7 +195,7 @@ shell的return是0~255之间的数字
 }
 ```
 递归求斐波那契
-```
+```shell
 #! /bin/bash
 f()
 {
@@ -215,14 +215,14 @@ echo $(f $1)
 exit code
 
 ### 文件重定向
-```
+```shell
 ls > output
 ```
 `>`直接覆盖文件
 `>>`追加方式重定向
 
 ### 引入外部脚本
-```
+```shell
 . filename  # 注意点和文件名之间有一个空格
 
 或
